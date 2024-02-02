@@ -1,7 +1,27 @@
-# Ignore everything
-*
+.editorconfig
+.env
+.env.example
+.htaccess
+.styleci.yml
+Attendence_report.csv
+Update pack/
+app/Console
+app/Exceptions
+app/Helpers
+artisan
+composer.json
+composer.lock
+config/
+database/
+node_modules/
+package-lock.json
+public/
+publicassets/
+storage/
+vendor/
+bootstrap/
+index.php
+package.json
 
-# But not these files...
-!app/Http/Controllers
-!routes
-!resources/views
+
+
