@@ -2,7 +2,6 @@
 *
 
 # But not these files...
-!.gitignore
 !app/Http/Controllers/
 !routes/
 !resources/views/
