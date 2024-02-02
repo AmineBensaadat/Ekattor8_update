@@ -36,6 +36,11 @@
     <!-- SummerNote Css -->
     <link rel="stylesheet" href="{{ asset('assets/css/summernote-lite.min.css') }}"/>
 
+    <!-- datatables bootstrap script -->
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	
+
     <link
       rel="stylesheet"
       type="text/css"
@@ -365,6 +370,22 @@
 				</div>
 			</li>
 
+      <li class="nav-links-li {{ request()->is('teacher/student*') ? 'showMenu':'' }}">
+				<div class="iocn-link">
+					<a href="{{ route('teacher.student') }}">
+						<div class="sidebar_icon">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="48" height="48">
+								<g>
+									<path d="M244.317,299.051c-90.917,8.218-160.183,85.041-158.976,176.32V480c0,17.673,14.327,32,32,32l0,0c17.673,0,32-14.327,32-32   v-5.909c-0.962-56.045,40.398-103.838,96-110.933c58.693-5.82,110.992,37.042,116.812,95.735c0.344,3.47,0.518,6.954,0.521,10.441   V480c0,17.673,14.327,32,32,32l0,0c17.673,0,32-14.327,32-32v-10.667c-0.104-94.363-76.685-170.774-171.047-170.67   C251.854,298.668,248.082,298.797,244.317,299.051z"/>
+									<path d="M256.008,256c70.692,0,128-57.308,128-128S326.7,0,256.008,0s-128,57.308-128,128   C128.078,198.663,185.345,255.929,256.008,256z M256.008,64c35.346,0,64,28.654,64,64s-28.654,64-64,64s-64-28.654-64-64   S220.662,64,256.008,64z"/>
+								</g>
+							</svg>
+						</div>
+						<span class="link_name">{{ get_phrase('Student') }}</span>
+					</a>
+				</div>
+			</li>
+
 		</ul>
 	</div>
 
@@ -591,6 +612,11 @@
     <!--html2canvas Script-->
     <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
 
+    <!-- datatables script -->
+	  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 
     <script>
 
