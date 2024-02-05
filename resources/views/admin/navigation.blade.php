@@ -58,7 +58,13 @@
       href="{{ asset('assets/calender/main.css') }}"
     />
 
-    <script src="{{ asset('assets/vendors/jquery/jquery-3.6.0.min.js') }}"></script>
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ asset('assets/vendors/bootstrap-icons-1.8.1/bootstrap-icons.css') }}"
+  />
+{{-- 
+    <script src="{{ asset('assets/vendors/jquery/jquery-3.6.0.min.js') }}"></script> --}}
 
 
 </head>
@@ -957,6 +963,10 @@
 
 
     <!--Main Jquery-->
+    
+    <!-- jQuery -->
+	  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
     <!--Bootstrap bundle with popper-->
     <script src="{{ asset('assets/vendors/bootstrap-5.1.3/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
@@ -987,11 +997,15 @@
     <!--pdf Script-->
     <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/js/html2pdf.bundle.min.js') }}"></script>
-
     <!--html2canvas Script-->
     <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
     <!---Image Gallery--->
     <script src="/ekattor8_v9/Ekattor8/public/assets/js/lightbox-plus-jquery.js"></script>
+
+    <!-- datatables style css -->
+	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+
+	
     <script>
 
         "use strict";

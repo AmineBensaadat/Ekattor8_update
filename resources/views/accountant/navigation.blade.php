@@ -543,6 +543,9 @@
     <!--Toaster Script-->
     <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
 
+     <!-- datatables script -->
+	 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
     <script>
 
       "use strict";

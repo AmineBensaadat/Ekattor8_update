@@ -366,7 +366,8 @@
 <script src="{{asset('assets/amchart/index.js')}}"></script>
 <script src="{{asset('assets/amchart/xy.js')}}"></script>
 <script src="{{asset('assets/amchart/animated.js')}}"></script>
-
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <!-- Chart code -->
 <script>
 "use strict";

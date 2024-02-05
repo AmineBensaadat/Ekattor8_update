@@ -9,7 +9,15 @@ use App\Models\School;
 use App\Models\Section;
 
 ?>
+<<<<<<< HEAD
 
+=======
+<style>
+  .dataTables_filter {
+    display: none;
+}
+</style>
+>>>>>>> 190ac214391bea425697d3375720ea5342dfe5c1
 <div class="mainSection-title">
     <div class="row">
       <div class="col-12">
@@ -112,9 +120,13 @@ use App\Models\Section;
                         <input type="hidden" name="search" id="search" value="{{ $search }}">
                         @endif
                         <div>
+<<<<<<< HEAD
                           <label for="class_id" class="eForm-label"
                             >{{ get_phrase('Class') }}</label
                           >
+=======
+                          <label for="class_id" class="eForm-label">{{ get_phrase('Class') }}</label>
+>>>>>>> 190ac214391bea425697d3375720ea5342dfe5c1
                           <select
                             class="form-select" name="class_id"
                             id="class_id" onchange="classWiseSection(this.value)" required
@@ -198,9 +210,14 @@ use App\Models\Section;
               </div>
             </div>
             @if(count($students) > 0)
+<<<<<<< HEAD
             <!-- Table -->
             <div class="table-responsive">
               <table class="table eTable eTable-2">
+=======
+            <div class="table-responsive">
+              <table id="student_dt" class="table eTable eTable-2 table table-striped" style="width:100%">
+>>>>>>> 190ac214391bea425697d3375720ea5342dfe5c1
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -396,11 +413,46 @@ use App\Models\Section;
 </div>
 @endif
 
+<<<<<<< HEAD
 
 <script type="text/javascript">
 
   "use strict";
 
+=======
+<!-- jQuery -->
+<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+
+	 <!-- datatables script -->
+	 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js" defer></script>
+
+	 <!-- datatables bootstrap script -->
+	 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" defer></script>
+
+	 <!-- bootstrap style -->
+	 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 
+	 <!-- datatables style css -->
+	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+
+	 <!-- create datatables -->
+	  <script type="text/javascript">
+	  	$(document).ready(function(){
+	   		$('#student_dt').DataTable();
+		});
+
+    $('#search').keyup(function() {
+    var table = $('#student_dt').DataTable();
+    table.search($(this).val()).draw();
+});
+	  </script>
+<script type="text/javascript">
+
+  "use strict";
+>>>>>>> 190ac214391bea425697d3375720ea5342dfe5c1
   function classWiseSection(classId) {
     let url = "{{ route('class_wise_sections', ['id' => ":classId"]) }}";
     url = url.replace(":classId", classId);
