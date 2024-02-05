@@ -828,7 +828,7 @@ Route::controller(Updater::class)->middleware('superAdmin','auth')->group(functi
 //Installation routes are here
 Route::controller(InstallController::class)->group(function () {
 
-    Route::get('/', 'index');
+    Route::get('/install_ended', 'index');
 
     Route::get('install/step0', 'step0')->name('step0');
     Route::get('install/step1', 'step1')->name('step1');
