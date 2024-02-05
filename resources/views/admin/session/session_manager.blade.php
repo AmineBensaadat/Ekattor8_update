@@ -40,7 +40,7 @@ $running_session = Session::find($current_session);
 					<div class="col-md-6 pb-3">
 						<div class="eAlert eBtn-blueish" role="alert">
 							{{ get_phrase('Active session ') }}
-                        	<span class="text-white eBtn-green p-1" id="active_session">{{ $running_session->session_title }}</span>
+                        	<span class="text-white eBtn-green p-1" id="active_session">{{ $running_session ? $running_session->session_title : 'no scholl session active' }}</span>
 						</div>
 						<div class="row">
 							<div class="col-9">
