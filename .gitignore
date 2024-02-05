@@ -1,4 +1,14 @@
 .editorconfig
+app/Console
+app/Exceptions
+app/Helpers
+app/Mail
+app/Models
+app/Providers
+resources/css
+resources/js
+resources/lang
+resources/sass
 .env
 .env.example
 .htaccess
