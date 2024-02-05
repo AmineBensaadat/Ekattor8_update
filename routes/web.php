@@ -194,6 +194,9 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::post('admin/teacher/{id}', 'teacherUpdate')->name('admin.teacher.update');
     Route::get('admin/teacher/delete/{id}', 'teacherDelete')->name('admin.teacher.delete');
     Route::get('admin/teacher/teacher_profile/{id}', 'teacherProfile')->name('admin.teacher.teacher_profile');
+    Route::get('admin/teacher/teacher_profile/{id}', 'teacherS  tudent')->name('admin.teacher.student');
+    
+    
 
 
     //Accountant users route
@@ -493,6 +496,7 @@ Route::controller(TeacherController::class)->middleware('teacher','auth')->group
     Route::get('teacher/attendance/student', 'studentListAttendance')->name('teacher.attendance.student');
     Route::get('teacher/attendance/filter', 'dailyAttendanceFilter')->name('teacher.daily_attendance.filter');
     Route::get('teacher/attendance/csv', 'dailyAttendanceFilter_csv')->name('teacher.dailyAttendanceFilter_csv');
+    Route::get('teacher/student', 'studentList')->name('teacher.student');
 
 
     //Marks routes
