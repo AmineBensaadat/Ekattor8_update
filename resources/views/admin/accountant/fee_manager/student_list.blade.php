@@ -201,7 +201,7 @@ use App\Models\Section;
             </div>
             @if(count($students) > 0)
             <div class="table-responsive">
-              <table id="student_dt" class="table eTable eTable-2 table table-striped" style="width:100%">
+              <table id="student_dt" class="table eTable eTable-2 table" style="width:100%">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -270,31 +270,15 @@ use App\Models\Section;
                         </td>
                         <td>
                           <div class="adminTable-action">
-                            <button
+                            <a href="{{ route('accountant.fee_manager.paiement', ['student_id' => $student->id]) }}">Payée</a>
+
+                            {{-- <button
                               type="button"
-                              class="eBtn eBtn-black dropdown-toggle table-action-btn-2"
-                              data-bs-toggle="dropdown"
+                              class="eBtn eBtn-black table-action-btn-2"
                               aria-expanded="false"
                             >
-                              {{ get_phrase('Actions') }}
-                            </button>
-                            <ul
-                              class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
-                            >
-                              <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="largeModal('{{ route('admin.student.id_card', ['id' => $student->id]) }}', '{{ get_phrase('Generate id card') }}')">{{ get_phrase('Generate Id card') }}</a>
-                              </li>
-
-                              <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.student_edit_modal', ['id' => $student->id]) }}', 'Edit Student')">{{ get_phrase('Edit') }}</a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('admin.student.delete', ['id' => $student->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="largeModal('{{ route('admin.student.student_profile', ['id' => $student->id]) }}','{{ get_phrase('Student Profile') }}')">{{ get_phrase('Profile') }}</a>
-                              </li>
-                            </ul>
+                              {{ get_phrase('Payée') }}
+                            </button> --}}
                           </div>
                         </td>
                       </tr>
@@ -418,13 +402,24 @@ use App\Models\Section;
 	 <!-- create datatables -->
 	  <script type="text/javascript">
 	  	$(document).ready(function(){
-	   		$('#student_dt').DataTable();
+        var table = $('#student_dt').DataTable();
+
+         $('#search').keyup(function() {
+            table.search($(this).val()).draw();
+          });
+
+          // slected row
+          // table.on('click', 'tbody tr', function (e) {
+          //   console.log( table.row( this ).data()[0] );
+              
+          //   e.currentTarget.classList.toggle('selected');
+          // });
+        // ------------------------
+
+        
 		});
 
-    $('#search').keyup(function() {
-    var table = $('#student_dt').DataTable();
-    table.search($(this).val()).draw();
-});
+
 	  </script>
 <script type="text/javascript">
 

@@ -104,6 +104,18 @@ class AccountantController extends Controller
         return view('admin.accountant.fee_manager.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
     }
 
+    /**
+     * Paiement the student fee manager view.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function studentFeeManagerPaiement($student_id)
+    {
+        $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
+        
+        dd($student_id);
+    }
+
     public function feeManagerExport($date_from = "", $date_to = "", $selected_class = "", $selected_status = "")
     {
 
