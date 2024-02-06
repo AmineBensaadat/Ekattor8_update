@@ -68,6 +68,42 @@ class AccountantController extends Controller
          }
     }
 
+    /**
+     * Create the student fee manager view.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function studentFeeManagerCreate(Request $request)
+    {
+        $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
+        
+        $search = $request['search'] ?? "";
+        $class_id = $request['class_id'] ?? "";
+        $section_id = $request['section_id'] ?? "";
+
+        $users = User::where(function ($query) use($search) {
+            $query->where('users.name', 'LIKE', "%{$search}%")
+                ->orWhere('users.email', 'LIKE', "%{$search}%");
+        });
+
+        $users->where('users.school_id', auth()->user()->school_id)
+        ->where('users.role_id', 7);
+
+        if($section_id == 'all' || $section_id != ""){
+            $users->where('section_id', $section_id);
+        }
+
+        if($class_id == 'all' || $class_id != ""){
+            $users->where('class_id', $class_id);
+        }
+
+        $students = $users->join('enrollments', 'users.id', '=', 'enrollments.user_id')->select('enrollments.*')->paginate(10);
+        
+        $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+
+        return view('admin.accountant.fee_manager.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
+    }
+
     public function feeManagerExport($date_from = "", $date_to = "", $selected_class = "", $selected_status = "")
     {
 

@@ -726,6 +726,7 @@ Route::controller(AccountantController::class)->middleware('accountant','auth')-
 
 
     //Fee manager routes
+    Route::get('accountant/student_fee_manager_create', 'studentFeeManagerCreate')->name('accountant.fee_manager.create');
     Route::get('accountant/student_fee_manager', 'studentFeeManagerList')->name('accountant.fee_manager.list');
     Route::get('accountant/student_fee_manager/export/{date_from}/{date_to}/{selected_class}/{selected_status}', 'feeManagerExport')->name('accountant.fee_manager.export');
     Route::get('accountant/student_fee_manager/pdf_print/{date_from}/{date_to}/{selected_class}/{selected_status}', 'feeManagerExportPdfPrint')->name('accountant.fee_manager.pdf_print');
