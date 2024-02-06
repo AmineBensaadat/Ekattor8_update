@@ -101,7 +101,7 @@ class AccountantController extends Controller
         
         $classes = Classes::get()->where('school_id', auth()->user()->school_id);
 
-        return view('admin.accountant.fee_manager.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
+        return view('accountant.student_fee_manager.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
     }
 
     /**
@@ -113,7 +113,8 @@ class AccountantController extends Controller
     {
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
         
-        dd($student_id);
+
+        return view('accountant.student_fee_manager.paiement', compact('student_id'));
     }
 
     public function feeManagerExport($date_from = "", $date_to = "", $selected_class = "", $selected_status = "")

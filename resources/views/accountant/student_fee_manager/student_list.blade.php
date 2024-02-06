@@ -1,4 +1,4 @@
-@extends('admin.navigation')
+@extends('accountant.navigation')
    
 @section('content')
 
@@ -27,9 +27,6 @@ use App\Models\Section;
               <li><a href="#">{{ get_phrase('Users') }}</a></li>
               <li><a href="#">{{ get_phrase('Students') }}</a></li>
             </ul>
-          </div>
-          <div class="export-btn-area">
-            <a href="{{ route('admin.offline_admission.single', ['type' => 'single']) }}" class="export_btn">{{ get_phrase('Create Student') }}</a>
           </div>
         </div>
       </div>
@@ -269,17 +266,10 @@ use App\Models\Section;
                           </div>
                         </td>
                         <td>
-                          <div class="adminTable-action">
-                            <a href="{{ route('accountant.fee_manager.paiement', ['student_id' => $student->id]) }}">Payée</a>
-
-                            {{-- <button
-                              type="button"
-                              class="eBtn eBtn-black table-action-btn-2"
-                              aria-expanded="false"
-                            >
-                              {{ get_phrase('Payée') }}
-                            </button> --}}
+                          <div class="export-btn-area">
+                            <a href="{{ route('accountant.fee_manager.paiement', ['student_id' => $student->id]) }}" class="export_btn">{{ get_phrase('Payée') }}</a>
                           </div>
+                        
                         </td>
                       </tr>
                     @endforeach
