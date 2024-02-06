@@ -22,7 +22,8 @@ artisan
 composer.json
 composer.lock
 config/
-database/
+database/factories
+database/seeders
 node_modules/
 package-lock.json
 public/

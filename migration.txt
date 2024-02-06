@@ -1,0 +1,2 @@
+1 - remove migration olde folder
+2 - run this commande line : php artisan migrate:refresh --path=/database/migrations
