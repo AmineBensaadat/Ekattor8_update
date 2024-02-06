@@ -230,7 +230,6 @@ class AccountantController extends Controller
         $data = $request->all();
 
         if($value == 'single'){
-          dd($data);
 
             if ($data['paid_amount'] > $data['total_amount']) {
 
