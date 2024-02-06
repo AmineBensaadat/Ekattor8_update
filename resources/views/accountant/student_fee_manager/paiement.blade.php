@@ -62,121 +62,52 @@
                 aria-labelledby="basicInfo-tab"
             >
                 <div class="eForm-layouts">
-                <form action="{{ route('accountant.profile.update') }}" method="post" enctype="multipart/form-data">
-                    @CSRF
-                    
+                <!----------------------------------------- my form ----------------- -->
+                <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('accountant.create.fee_manager', ['value' => 'single']) }}">
+                  @csrf 
+                  <div class="form-row">
+                
                     <div class="fpb-7">
-                    <label for="eInputName" class="eForm-label">{{ get_phrase('Name') }}</label>
-                    <input
-                        type="text"
-                        class="form-control eForm-control"
-                        id="eInputName"
-                        name="name"
-                        value="{{ auth()->user()->name }}"
-                        placeholder="Your Name"
-                        aria-label="Your Name"
-                    />
+                      <label for="title" class="eForm-label">{{ get_phrase('Invoice title') }}</label>
+                      <input type="text" class="form-control eForm-control" id="title" name = "title" required>
                     </div>
+                
                     <div class="fpb-7">
-                    <label for="eInputEmail" class="eForm-label"
-                        >{{ get_phrase('Email') }}</label
-                    >
-                    <input
-                        type="email"
-                        class="form-control eForm-control"
-                        id="eInputEmail"
-                        name="email"
-                        value="{{ auth()->user()->email }}"
-                        placeholder="example@email.com"
-                        aria-label="example@email.com"
-                    />
+                      <label for="total_amount" class="eForm-label">{{ get_phrase('Total amount').'('.school_currency().')' }}</label>
+                      <input type="number" class="form-control eForm-control" id="total_amount" name = "total_amount" required>
                     </div>
-
+                
                     <div class="fpb-7">
-                    <label for="designation" class="eForm-label"
-                        >{{ get_phrase('Designation') }}</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control eForm-control"
-                        id="designation"
-                        name="designation"
-                        value="{{ auth()->user()->designation }}"
-                        placeholder="Enter your designation"
-                    />
+                      <label for="paid_amount" class="eForm-label">{{ get_phrase('Paid amount').'('.school_currency().')' }}</label>
+                      <input type="number" class="form-control eForm-control" id="paid_amount" name = "paid_amount" required>
                     </div>
-                    
-                    
+                
                     <div class="fpb-7">
-                    <label for="eBrithDay" class="eForm-label"
-                        >{{ get_phrase('Birthday') }}</label
-                    >
-                    @php
-                        $birthday = json_decode(auth()->user()->user_information, true)['birthday'];
-                        if(empty($birthday)){
-                            $birthday = time();
-                        }
-                    @endphp
-                    <input
-                        type="text"
-                        class="form-control eForm-control"
-                        id="eInputDate"
-                        name="eDefaultDateRange"
-                        value="{{ date('m/d/Y', $birthday) }}"
-                    />
+                      <label for="status" class="eForm-label">{{ get_phrase('Status') }}</label>
+                      <select name="status" id="status" class="form-select eForm-select eChoice-multiple-with-remove" required >
+                        <option value="">{{ get_phrase('Select a status') }}</option>
+                        <option value="paid">{{ get_phrase('Paid') }}</option>
+                        <option value="unpaid">{{ get_phrase('Unpaid') }}</option>
+                      </select>
                     </div>
+                
                     <div class="fpb-7">
-                    <label for="eGenderList" class="eForm-label"
-                        >{{ get_phrase('Gender') }}</label
-                    >
-                    <select name="gender"
-                        class="form-select eForm-select eChoice-multiple-without-remove"
-                        data-placeholder="Type to search..."
-                    >
-                        <option value="Male" @php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'male' ? 'selected':''; @endphp>{{ get_phrase('Male') }}</option>
-                        <option value="Female" @php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'female' ? 'selected':''; @endphp>{{ get_phrase('Female') }}</option>
-                    </select>
+                      <label for="payment_method" class="eForm-label">{{ get_phrase('Payment method') }}</label>
+                      <select name="payment_method" id="payment_method" class="form-select eForm-select eChoice-multiple-with-remove">
+                        <option value="">{{ get_phrase('Select a payment method') }}</option>
+                        <option value="cash">{{ get_phrase('Cash') }}</option>
+                        <option value="paypal">{{ get_phrase('Paypal') }}</option>
+                        <option value="paytm">{{ get_phrase('Paytm') }}</option>
+                        <option value="razorpay">{{ get_phrase('Razorpay') }}</option>
+                      </select>
                     </div>
-                    <div class="fpb-7">
-                    <label for="eInputPhone" class="eForm-label"
-                        >{{ get_phrase('Phone Number') }}</label
-                    >
-                    <input
-                        type="number"
-                        class="form-control eForm-control"
-                        id="eInputPhone"
-                        name="phone"
-                        value="{{ json_decode(auth()->user()->user_information, true)['phone'] }}"
-                        placeholder="00 (00) 12345 6789"
-                        aria-label="00 (00) 12345 6789"
-                    />
-                    </div>
-                    <div class="fpb-7">
-                    <label for="eInputAddress" class="eForm-label"
-                        >{{ get_phrase('Address') }}</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control eForm-control"
-                        id="eInputAddress"
-                        name="address"
-                        value="{{ json_decode(auth()->user()->user_information, true)['address'] }}"
-                        placeholder="Enter Address"
-                        aria-label="Enter Address"
-                    />
-                    </div>
-
-                    <div class="fpb-7">
-                    <label for="eInputAddress" class="eForm-label"
-                        >{{ get_phrase('Photo') }}</label
-                    >
-                    <input type="hidden" class="form-control" name="old_photo" value="{{ json_decode(auth()->user()->user_information, true)['photo'] }}"/>
-                    <input type="file" class="form-control eForm-control-file" name="photo" accept="image/*" />
-                    </div>
-
-                <button type="submit" class="userFormEdit-btn btn">{{ get_phrase('Save Changes') }}</button>
-
+                
+                  </div>
+                  <div class="form-group  col-md-12">
+                    <button class="btn-form" type="submit">{{ get_phrase('Create invoice') }}</button>
+                  </div>
                 </form>
+                <!------------------------- end form ------------------------- -->
                 </div>
             </div>
 

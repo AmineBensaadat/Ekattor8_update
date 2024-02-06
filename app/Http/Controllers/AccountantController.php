@@ -109,12 +109,38 @@ class AccountantController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function studentFeeManagerPaiement($student_id)
+    public function studentFeeManagerPaiement(Request $request, $student_id)
     {
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
+
+                
+        $class_id = $request['class_id'] ?? "";
+        $section_id = $request['section_id'] ?? "";
+
+  
+        if(count($request->all()) > 0){
+          $data = $request->all();
+          $date = explode('-', $data['eDateRange']);
+          $date_from = strtotime($date[0].' 00:00:00');
+          $date_to  = strtotime($date[1].' 23:59:59');
+          $selected_class = $data['class'];
+          $selected_status = $data['status'];
+
+          if ($selected_class != "all" && $selected_status != "all") {
+              $invoices = StudentFeeManager::where('timestamp', '>=', $date_from)->where('timestamp', '<=', $date_to)->where('class_id', $selected_class)->where('status', $selected_status)->where('school_id', auth()->user()->school_id)->where('session_id', $active_session)->get();
+          } else if ($selected_class != "all") {
+              $invoices = StudentFeeManager::where('timestamp', '>=', $date_from)->where('timestamp', '<=', $date_to)->where('class_id', $selected_class)->where('school_id', auth()->user()->school_id)->where('session_id', $active_session)->get();
+          } else if ($selected_status != "all"){
+              $invoices = StudentFeeManager::where('timestamp', '>=', $date_from)->where('timestamp', '<=', $date_to)->where('status', $selected_status)->where('school_id', auth()->user()->school_id)->where('session_id', $active_session)->get();
+          } else {
+              $invoices = StudentFeeManager::where('timestamp', '>=', $date_from)->where('timestamp', '<=', $date_to)->where('school_id', auth()->user()->school_id)->where('session_id', $active_session)->get();
+          }
+        }
+
         
 
-        return view('accountant.student_fee_manager.paiement', compact('student_id'));
+          $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+        return view('accountant.student_fee_manager.paiement',  compact('classes', 'class_id', 'section_id' , 'student_id'));
     }
 
     public function feeManagerExport($date_from = "", $date_to = "", $selected_class = "", $selected_status = "")
