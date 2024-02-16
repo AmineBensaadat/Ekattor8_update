@@ -444,6 +444,10 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::get('admin/subscription/payment/{package_id}', 'subscriptionPayment')->name('admin.subscription.payment');
     Route::post('admin/subscription/offline_payment/{id}', 'offlinePayment')->name('admin.subscription.offline_payment');
 
+    //student Subscription routes
+    Route::get('admin/student_subscription', 'studentSubscription')->name('admin.student.subscription');
+
+
     //Event routes
     Route::get('admin/events/list', 'eventList')->name('admin.events.list');
     Route::get('admin/events/create', 'createEvent')->name('admin.events.open_modal');

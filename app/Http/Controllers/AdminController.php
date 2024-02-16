@@ -2588,7 +2588,19 @@ class AdminController extends Controller
     public function editSection($id)
     {
         $sections = Section::get()->where('class_id', $id);
-        return view('admin.class.sections', ['class_id' => $id, 'sections' => $sections]);
+        return view('admin.subscription.sections', ['class_id' => $id, 'sections' => $sections]);
+    }
+
+
+    public function studentSubscription()
+    {
+      $date_from = strtotime('first day of january this year');
+      $date_to = strtotime('last day of december this year');
+      $subscriptions = Subscription::where('date_added', '>=', $date_from)
+          ->where('date_added', '<=', $date_to)
+          ->paginate(10);
+
+      return view('admin.subscription.student_subscription', compact('subscriptions', 'date_from', 'date_to'));
     }
 
     public function sectionUpdate(Request $request, $id)
