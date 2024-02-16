@@ -35,37 +35,33 @@ class ApiController extends Controller
 
         // Check email
         $user = User::where('email', $fields['email'])->where('status', 1)->first();
-
-        // Check password
-        if(!$user || !Hash::check($fields['password'], $user->password)) {
-            if(isset($user) && $user->count() > 0){
-                return response([
-                    'message' => 'Invalid credentials!'
-                ], 401);
-            } else {
-                return response([
-                    'message' => 'User not found!'
-                ], 401);
-            }
-        } else if($user->role_id == 7) {
-            
-        	$token = $user->createToken('auth-token')->plainTextToken;
-
-	        $response = [
-	        	'message' => 'Login successful',
-	            'user' => $user,
-	            'token' => $token
-	        ];
-
-	        return response($response, 201);
-
-        } else {
-
-        	//user not authorized
-            return response()->json([
-                'message' => 'User not found!',
-            ], 400);
+        if($user){
+          if(Hash::check($fields['password'], $user->password)){
+            $token = $user->createToken('auth-token')->plainTextToken;
+            $response = [
+              'message' => 'Login successful',
+              'error' => '',
+              'user' => $user,
+              'token' => $token,
+              'status_codes' => 200 
+            ];
+          }else{
+            $response = [
+              'message' => 'password Error',
+              'user' => null,
+              'token' => '',
+              'status_codes' => 401 
+            ];
+          }
+        }else{
+          $response = [
+            'message' => 'User not found!',
+            'user' => null,
+            'token' => '',
+            'status_codes' => 401 
+          ];
         }
+        return response($response);
     }
     
     //student account remove function
