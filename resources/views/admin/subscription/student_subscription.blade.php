@@ -5,7 +5,7 @@ use App\Models\School;
 
 ?>
 
-@extends('superadmin.navigation')
+@extends('admin.navigation')
    
 @section('content')
 <div class="mainSection-title">
