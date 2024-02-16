@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Session;
 use App\Models\School;
 use App\Models\Subscription;
+use App\Models\StudentPackages;
 use App\Models\Exam;
 use App\Models\ExamCategory;
 use App\Models\Classes;
@@ -2596,7 +2597,7 @@ class AdminController extends Controller
     {
       $date_from = strtotime('first day of january this year');
       $date_to = strtotime('last day of december this year');
-      $subscriptions = Subscription::where('date_added', '>=', $date_from)
+      $subscriptions = StudentPackages::where('date_added', '>=', $date_from)
           ->where('date_added', '<=', $date_to)
           ->paginate(10);
 
