@@ -194,9 +194,6 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::post('admin/teacher/{id}', 'teacherUpdate')->name('admin.teacher.update');
     Route::get('admin/teacher/delete/{id}', 'teacherDelete')->name('admin.teacher.delete');
     Route::get('admin/teacher/teacher_profile/{id}', 'teacherProfile')->name('admin.teacher.teacher_profile');
-    Route::get('admin/teacher/teacher_profile/{id}', 'teacherS  tudent')->name('admin.teacher.student');
-    
-    
 
 
     //Accountant users route
