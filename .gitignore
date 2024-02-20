@@ -1,7 +1,6 @@
 .editorconfig
 app/Console
 app/Exceptions
-app/Helpers
 app/Mail
 app/Models
 app/Providers
