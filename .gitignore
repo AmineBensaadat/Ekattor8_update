@@ -16,7 +16,6 @@ Attendence_report.csv
 Update pack/
 app/Console
 app/Exceptions
-app/Helpers
 artisan
 composer.json
 composer.lock
