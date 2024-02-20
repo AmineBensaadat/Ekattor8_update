@@ -128,6 +128,19 @@
                     </select>
                     </div>
                     <div class="fpb-7">
+                      <label for="language" class="eForm-label">{{ get_phrase('System Language') }}</label>
+                      <select class="form-select eForm-select eChoice-multiple-with-remove" id="userLang" name="userLang" required>
+                          <?php $languages = get_all_language();
+                          ?>
+                          <?php foreach ($languages as $language): 
+                          
+                    
+                          ?>
+                          <option value="{{ $language->name  }}" {{ (isset(json_decode(auth()->user()->user_information, true)['userLang']) ?  json_decode(auth()->user()->user_information, true)['userLang'] : get_settings('language') )  == $language->name ?  'selected':'' }}>{{ ucfirst($language->name) }}</option>
+                          <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="fpb-7">
                     <label for="eInputPhone" class="eForm-label"
                         >{{ get_phrase('Phone Number') }}</label
                     >

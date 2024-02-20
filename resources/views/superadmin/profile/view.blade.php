@@ -137,6 +137,7 @@
                         <option value="Female" @php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'female' ? 'selected':''; @endphp>{{ get_phrase('Female') }}</option>
                     </select>
                     </div>
+                    
                     <div class="fpb-7">
                     <label for="eInputPhone" class="eForm-label"
                         >{{ get_phrase('Phone Number') }}</label

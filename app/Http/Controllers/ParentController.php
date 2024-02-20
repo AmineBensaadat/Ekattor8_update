@@ -574,7 +574,7 @@ class ParentController extends Controller
         $user_info['gender'] = $request->gender;
         $user_info['phone'] = $request->phone;
         $user_info['address'] = $request->address;
-
+        $user_info['userLang'] = $request->userLang;
 
         if(empty($request->photo)){
             $user_info['photo'] = $request->old_photo;
