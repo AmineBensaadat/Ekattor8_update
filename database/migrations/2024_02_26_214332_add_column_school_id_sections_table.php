@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
       Schema::table('sections', function (Blueprint $table) {
-        $table->int('school_id');
+        $table->integer('school_id');
       });
     }
 

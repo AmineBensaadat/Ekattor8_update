@@ -363,6 +363,7 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     //Class list routes
     Route::get('admin/class_list', 'classList')->name('admin.class_list');
     Route::get('admin/class_create', 'createClass')->name('admin.class.open_modal');
+    Route::get('admin/section_list', 'sectionList')->name('admin.section_list');
     Route::post('admin/class', 'classCreate')->name('admin.create.class');
     Route::get('admin/class/{id}', 'editClass')->name('admin.edit.class');
     Route::post('admin/class/{id}', 'classUpdate')->name('admin.class.update');

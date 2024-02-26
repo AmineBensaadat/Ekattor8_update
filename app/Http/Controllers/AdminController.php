@@ -2531,11 +2531,45 @@ class AdminController extends Controller
         return view('admin.class.class_list', compact('class_lists', 'search'));
     }
 
+        /**
+     * Show the class list.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function sectionList(Request $request)
+    {
+        $search = $request['search'] ?? "";
+
+        if($search != "") {
+
+            $class_lists = Section::where(function ($query) use($search) {
+                    $query->where('name', 'LIKE', "%{$search}%")
+                        ->where('school_id', auth()->user()->school_id);
+                })->paginate(10);
+
+        } else {
+            $class_lists = Section::where('school_id', auth()->user()->school_id)->paginate(10);
+        }
+
+        return view('admin.section.section_list', compact('class_lists', 'search'));
+    }
+
     public function createClass()
     {
         $school_id  = auth()->user()->school_id;
      
         $sections = Section::get()->where('school_id', $school_id);
+
+
+        return view('admin.class.add_class', compact('sections'));
+    }
+
+    public function createSection()
+    {
+        $school_id  = auth()->user()->school_id;
+     
+        $sections = Section::get()->where('school_id', $school_id);
+
 
         return view('admin.class.add_class', compact('sections'));
     }

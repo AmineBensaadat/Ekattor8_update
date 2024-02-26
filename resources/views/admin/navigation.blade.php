@@ -288,6 +288,9 @@
                 <li><a class="{{ (request()->is('admin/class_list*')) ? 'active' : '' }}" href="{{ route('admin.class_list') }}"><span>
                             {{ get_phrase('Class List') }}
                         </span></a></li>
+                <li><a class="{{ (request()->is('admin/section_list*')) ? 'active' : '' }}" href="{{ route('admin.section_list') }}"><span>
+                          {{ get_phrase('Section List') }}
+                      </span></a></li>
                 <li><a class="{{ (request()->is('admin/routine*')) ? 'active' : '' }}" href="{{ route('admin.routine') }}"><span>
                             {{ get_phrase('Class Routine') }}
                         </span></a></li>
