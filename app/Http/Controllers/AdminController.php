@@ -2533,7 +2533,11 @@ class AdminController extends Controller
 
     public function createClass()
     {
-        return view('admin.class.add_class');
+        $school_id  = auth()->user()->school_id;
+     
+        $sections = Section::get()->where('school_id', $school_id);
+
+        return view('admin.class.add_class', compact('sections'));
     }
 
     public function classCreate(Request $request)
