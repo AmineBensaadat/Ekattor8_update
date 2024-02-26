@@ -18,7 +18,7 @@
             </ul>
           </div>
           <div class="export-btn-area">
-            <a href="javascript:;" class="export_btn" onclick="rightModal('{{ route('admin.class.open_modal') }}', '{{ get_phrase('Create Section') }}')">{{ get_phrase('Add section') }}</a>
+            <a href="javascript:;" class="export_btn" onclick="rightModal('{{ route('admin.section.open_modal') }}', '{{ get_phrase('Create Section') }}')">{{ get_phrase('Add section') }}</a>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{{ get_phrase('Name') }}</th>
-                            <th scope="col">{{ get_phrase('Section') }}</th>
+                            <th scope="col">{{ get_phrase('Class') }}</th>
                             <th scope="col" class="text-end">{{ get_phrase('Action') }}</th>
                         </tr>
                     </thead>

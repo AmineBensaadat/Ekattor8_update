@@ -15,6 +15,7 @@ class Section extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'class_id'
+        'name', 'class_id','school_id'
+        
     ];
 }

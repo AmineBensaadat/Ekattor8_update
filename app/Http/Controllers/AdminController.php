@@ -2568,10 +2568,30 @@ class AdminController extends Controller
     {
         $school_id  = auth()->user()->school_id;
      
-        $sections = Section::get()->where('school_id', $school_id);
+        $classes = Classes::get()->where('school_id', $school_id);
 
+        return view('admin.section.add_section', compact('classes'));
+    }
 
-        return view('admin.class.add_class', compact('sections'));
+    public function sectionCreate(Request $request)
+    {
+        $data = $request->all();
+        $duplicate_class_check = Section::get()->where('name', $data['name'])->where('school_id', auth()->user()->school_id);
+
+        if(count($duplicate_class_check) == 0) {
+
+            Section::create([
+                'name' => $data['name'],
+                'class_id' =>$data['class'],
+                'school_id' => auth()->user()->school_id,
+            ]);
+
+            return redirect()->back()->with('message','You have successfully create a new class.');
+
+        } else {
+            return back()
+            ->with('error','Sorry this class already exists');
+        }
     }
 
     public function classCreate(Request $request)
