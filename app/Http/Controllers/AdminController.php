@@ -2515,8 +2515,9 @@ class AdminController extends Controller
      */
     public function classList(Request $request)
     {
+        
         $search = $request['search'] ?? "";
-
+        $sections =  Section::get()->where('id',auth()->user()->school_id);
         if($search != "") {
 
             $class_lists = Classes::where(function ($query) use($search) {
@@ -2528,7 +2529,7 @@ class AdminController extends Controller
             $class_lists = Classes::where('school_id', auth()->user()->school_id)->paginate(10);
         }
 
-        return view('admin.class.class_list', compact('class_lists', 'search'));
+        return view('admin.class.class_list', compact('class_lists', 'search', 'sections'));
     }
 
         /**
