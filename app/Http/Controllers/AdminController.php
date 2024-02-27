@@ -2541,17 +2541,15 @@ class AdminController extends Controller
         $search = $request['search'] ?? "";
 
         if($search != "") {
-
-            $class_lists = Section::where(function ($query) use($search) {
+            $section_lists = Section::where(function ($query) use($search) {
                     $query->where('name', 'LIKE', "%{$search}%")
                         ->where('school_id', auth()->user()->school_id);
                 })->paginate(10);
-
         } else {
-            $class_lists = Section::where('school_id', auth()->user()->school_id)->paginate(10);
+            $section_lists = Section::where('school_id', auth()->user()->school_id)->paginate(10);
         }
 
-        return view('admin.section.section_list', compact('class_lists', 'search'));
+        return view('admin.section.section_list', compact('section_lists', 'search'));
     }
 
     public function createClass()

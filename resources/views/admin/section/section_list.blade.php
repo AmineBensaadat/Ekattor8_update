@@ -1,4 +1,7 @@
-<?php use App\Models\Section; ?>
+<?php 
+use App\Models\Section;
+use App\Models\Classes; 
+?>
 
 @extends('admin.navigation')
    
@@ -58,7 +61,7 @@
                 </div>
               </form>
               <!-- Export Button -->
-              @if(count($class_lists) > 0)
+              @if(count($section_lists) > 0)
               <div class="position-relative">
                 <button
                   class="eBtn-3 dropdown-toggle"
@@ -98,30 +101,23 @@
               </div>
               @endif
             </div>
-            @if(count($class_lists) > 0)
+            @if(count($section_lists) > 0)
             <div class="table-responsive tScrollFix pb-2">
                   <table class="table eTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{{ get_phrase('Name') }}</th>
-                            <th scope="col">{{ get_phrase('Class') }}</th>
                             <th scope="col" class="text-end">{{ get_phrase('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($class_lists as $key => $class_list)
+                        @foreach($section_lists as $key => $class_list)
+                         
                              <tr>
-                                <td>{{ $class_lists->firstItem() + $key }}</td>
+                                <td>{{ $section_lists->firstItem() + $key }}</td>
                                 <td>{{ $class_list->name }}</td>
-                                <td>
-                                    <ul>
-                                        <?php $sections = Section::get()->where('class_id', $class_list['id']); ?>
-                                        @foreach($sections as $section)
-                                            <li>{{ $section->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
+                            
                                 <td class="text-start">
                                     <div class="adminTable-action">
                                         <button
@@ -151,7 +147,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {!! $class_lists->appends(request()->all())->links() !!}
+                {!! $section_lists->appends(request()->all())->links() !!}
             </div>
             @else
             <div class="empty_box center">
@@ -165,7 +161,7 @@
 </div>
 
 
-@if(count($class_lists) > 0)
+@if(count($section_lists) > 0)
 <div class="table-responsive class_list display-none-view" id="class_list">
   <h4 class="" style="font-size: 16px; font-weight: 600; line-height: 26px; color: #181c32; margin-left:45%; margin-bottom:15px; margin-top:17px;">{{ get_phrase('Class List') }}</h4> 
       <table class="table eTable">
@@ -177,9 +173,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($class_lists as $key => $class_list)
+            @foreach($section_lists as $key => $class_list)
                  <tr>
-                    <td>{{ $class_lists->firstItem() + $key }}</td>
+                    <td>{{ $section_lists->firstItem() + $key }}</td>
                     <td>{{ $class_list->name }}</td>
                     <td>
                         <ul>
@@ -193,7 +189,7 @@
             @endforeach
         </tbody>
     </table>
-    {!! $class_lists->appends(request()->all())->links() !!}
+    {!! $section_lists->appends(request()->all())->links() !!}
 </div>
 @endif
 
