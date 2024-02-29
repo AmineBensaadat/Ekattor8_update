@@ -21,6 +21,7 @@ use App\Models\Department;
 use App\Models\ClassRoom;
 use App\Models\ClassList;
 use App\Models\Section;
+use App\Models\ClasseSection;
 use App\Models\Enrollment;
 use App\Models\DailyAttendances;
 use App\Models\Routine;
@@ -2279,7 +2280,10 @@ class AdminController extends Controller
 
     public function classWiseSections($id)
     {
-        $sections = Section::get()->where('class_id', $id);
+        $sections = ClasseSection::select('name', 'sections.id')
+        ->join('sections', 'sections.id', '=', 'classe_sections.section_id')
+        ->where('classe_sections.class_id', $id)
+        ->get();
         $options = '<option value="">'.'Select a section'.'</option>';
         foreach ($sections as $section):
             $options .= '<option value="'.$section->id.'">'.$section->name.'</option>';
@@ -2581,7 +2585,6 @@ class AdminController extends Controller
 
             Section::create([
                 'name' => $data['name'],
-                'class_id' =>$data['class'],
                 'school_id' => auth()->user()->school_id,
             ]);
 
@@ -2605,9 +2608,10 @@ class AdminController extends Controller
                 'school_id' => auth()->user()->school_id,
             ])->id;
 
-            Section::create([
-                'name' => 'A',
-                'class_id' => $id,
+            ClasseSection::create([
+                'section_id' => $data['section_id'],
+                'school_id' => auth()->user()->school_id,
+                'class_id'=> $id
             ]);
 
             return redirect()->back()->with('message','You have successfully create a new class.');

@@ -7,7 +7,7 @@
                 <input type="text" class="form-control eForm-control" id="name" name="name" required>
             </div>
             <div class="fpb-7 pt-2">
-                <button class="btn-form" type="submit">{{ get_phrase('Create class') }}</button>
+                <button class="btn-form" type="submit">{{ get_phrase('Create section') }}</button>
             </div>
         </div>
     </form>
