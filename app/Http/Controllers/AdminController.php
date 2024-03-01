@@ -4475,5 +4475,39 @@ class AdminController extends Controller
         }
     }
 
+    public function expired_students(Request $request){
+      $search = $request['search'] ?? "";
+      $class_id = $request['class_id'] ?? "";
+      $section_id = $request['section_id'] ?? "";
 
+      $users = User::where(function ($query) use($search) {
+          $query->where('users.name', 'LIKE', "%{$search}%")
+              ->orWhere('users.email', 'LIKE', "%{$search}%");
+      });
+
+      $users->where('users.school_id', auth()->user()->school_id)
+      ->where('users.role_id', 7);
+
+      if($section_id == 'all' || $section_id != ""){
+          $users->where('section_id', $section_id);
+      }
+
+      if($class_id == 'all' || $class_id != ""){
+          $users->where('class_id', $class_id);
+      }
+
+      //$students = $users->join('enrollments', 'users.id', '=', 'enrollments.user_id')->select('enrollments.*')->paginate(10);
+
+      $students = StudentFeeManager::select('*')
+      ->join('users', 'users.id', '=', 'student_fee_managers.student_id')
+      //->where('student_fee_managers.student_id', 2)
+      ->get();
+
+      // dd($students->firstItem());
+      // $students = StudentFeeManager::get()
+      // //->where('id', 1)
+      // ->where('school_id', auth()->user()->school_id);
+      
+      return view('admin.student.expired.student_list', compact('students', 'class_id', 'section_id'));
+    }
 }

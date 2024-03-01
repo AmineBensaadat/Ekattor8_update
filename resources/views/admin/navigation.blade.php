@@ -340,9 +340,11 @@
                 </span>
             </div>
             <ul class="sub-menu">
-                <li><a class="{{ (request()->is('admin/fee_manager')) ? 'active' : '' }}" href="{{ route('admin.fee_manager.list') }}"><span>
+                <li>
+                  <a class="{{ (request()->is('admin/fee_manager')) ? 'active' : '' }}" href="{{ route('admin.fee_manager.list') }}"><span>
                             {{ get_phrase('Student Fee Manager') }}
-                        </span></a></li>
+                        </span>
+                      </a></li>
                 <li><a class="{{ (request()->is('admin/offline_payment/pending*')) ? 'active' : '' }}" href="{{ route('admin.offline_payment_pending') }}"><span>
                             {{ get_phrase('Offline Payment Request') }}
                         </span></a></li>
@@ -352,6 +354,13 @@
                 <li><a class="{{ (request()->is('admin/expense_category*')) ? 'active' : '' }}" href="{{ route('admin.expense.category_list') }}"><span>
                             {{ get_phrase('Expense Category') }}
                         </span></a></li>
+                <li>
+                      <a class="{{ (request()->is('admin/expired_students*')) ? 'active' : '' }}" href="{{ route('admin.expired_students') }}">
+                      <span>
+                          {{ get_phrase('expired students') }}
+                      </span>
+                    </a>
+                </li>
             </ul>
         </li>
 

@@ -380,7 +380,7 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::get('admin/subscription/payment/fail/{user_data}/{response}', 'admin_subscription_fee_fail_payment')->name('admin_subscription_fee_fail_payment');
     Route::get('admin/subscription/payment/trail', 'admin_free_subcription')->name('admin_free_subcription');
     Route::post('admin/subscription/offline/payment/{id}', 'admin_subscription_offline_payment')->name('admin.admin_subscription_offline_payment');
-
+    Route::get('admin/expired_students', 'expired_students')->name('admin.expired_students');
 
     //Student fee manager routes
     Route::get('admin/fee_manager', 'studentFeeManagerList')->name('admin.fee_manager.list');
