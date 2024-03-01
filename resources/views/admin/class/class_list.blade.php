@@ -105,7 +105,6 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{{ get_phrase('Name') }}</th>
-                            <th scope="col">{{ get_phrase('Section') }}</th>
                             <th scope="col" class="text-end">{{ get_phrase('Action') }}</th>
                         </tr>
                     </thead>
@@ -114,14 +113,6 @@
                              <tr>
                                 <td>{{ $class_lists->firstItem() + $key }}</td>
                                 <td>{{ $class_list->name }}</td>
-                                <td>
-                                    <ul>
-                                        <?php $sections = Section::get()->where('class_id', $class_list['id']); ?>
-                                        @foreach($sections as $section)
-                                            <li>{{ $section->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
                                 <td class="text-start">
                                     <div class="adminTable-action">
                                         <button

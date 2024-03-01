@@ -2559,12 +2559,7 @@ class AdminController extends Controller
 
     public function createClass()
     {
-        $school_id  = auth()->user()->school_id;
-     
-        $sections = Section::get()->where('school_id', $school_id);
-
-
-        return view('admin.class.add_class', compact('sections'));
+        return view('admin.class.add_class');
     }
 
     public function createSection()
@@ -2583,10 +2578,17 @@ class AdminController extends Controller
 
         if(count($duplicate_class_check) == 0) {
 
-            Section::create([
+            $id = Section::create([
                 'name' => $data['name'],
                 'school_id' => auth()->user()->school_id,
-            ]);
+            ])->id;
+
+            ClasseSection::create([
+              'section_id' =>   $id,
+              'school_id' => auth()->user()->school_id,
+              'class_id'=> $data['classe_id']
+          ]);
+
 
             return redirect()->back()->with('message','You have successfully create a new class.');
 
@@ -2608,12 +2610,7 @@ class AdminController extends Controller
                 'school_id' => auth()->user()->school_id,
             ])->id;
 
-            ClasseSection::create([
-                'section_id' => $data['section_id'],
-                'school_id' => auth()->user()->school_id,
-                'class_id'=> $id
-            ]);
-
+        
             return redirect()->back()->with('message','You have successfully create a new class.');
 
         } else {
