@@ -2,7 +2,6 @@
 app/Console
 app/Exceptions
 app/Mail
-app/Models
 app/Providers
 resources/css
 resources/js
