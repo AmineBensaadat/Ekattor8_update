@@ -24,18 +24,11 @@
             </div>
 
             <div class="fpb-7">
-                <label for="section_id" class="eForm-label">{{ get_phrase('Section') }}</label>
-                <select name="section_id" id="section_id" class="form-select eForm-select eChoice-multiple-with-remove" required >
-                    <?php if($student_details['section_id'] !=""){
-                        $sections = Section::get()->where('class_id', $student_details['class_id']); ?>
-                        @foreach($sections as $section)
-                            <option value="{{ $section->id }}" {{ $student_details['section_id'] == $section->id ?  'selected':'' }}>{{ $section->name }}</option>
-                        @endforeach
-                    <?php } else { ?>
-                        <option value="">{{ get_phrase('First select a class') }}</option>
-                    <?php } ?>
-                </select>
-            </div>
+              <label for="section_list"  class="eForm-label">{{ get_phrase("Section") }}</label>
+              <select name="section_list" id="section_list" class="form-select eForm-select eChoice-multiple-with-remove" required >
+                  <option value="">{{ get_phrase("First select a class") }}</option>
+              </select>
+          </div>
 
             <?php 
             $info = json_decode($user->user_information);
@@ -106,12 +99,14 @@
     });
 
     function classWiseSection(classId) {
+      
         let url = "{{ route('admin.class_wise_sections', ['id' => ":classId"]) }}";
         url = url.replace(":classId", classId);
         $.ajax({
             url: url,
             success: function(response){
-                $('#section_id').html(response);
+              console.log(response);
+                $('#section_list').html(response);
             }
         });
     }

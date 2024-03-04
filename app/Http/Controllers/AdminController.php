@@ -2285,6 +2285,7 @@ class AdminController extends Controller
         ->where('classe_sections.class_id', $id)
         ->get();
         $options = '<option value="">'.'Select a section'.'</option>';
+        
         foreach ($sections as $section):
             $options .= '<option value="'.$section->id.'">'.$section->name.'</option>';
         endforeach;
