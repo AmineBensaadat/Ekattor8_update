@@ -373,6 +373,8 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::post('admin/class/sections/{id}', 'sectionUpdate')->name('admin.section.update');
     Route::get('admin/class/delete/{id}', 'classDelete')->name('admin.class.delete');
 
+    // sections routes
+    Route::get('admin/section/delete/{id}', 'sectionDelete')->name('admin.section.delete');
 
     //Accounting route
     Route::get('admin/student_fee/delete/{id}/{status}', 'update_offline_payment')->name('admin.update_offline_payment');

@@ -2647,8 +2647,8 @@ class AdminController extends Controller
 
     public function editSection($id)
     {
-        $sections = Section::get()->where('class_id', $id);
-        return view('admin.subscription.sections', ['class_id' => $id, 'sections' => $sections]);
+        $section = Section::find(['id' => $id]);
+        return view('admin.section.update_section', ['section' => $section[0]]);
     }
 
 
@@ -2705,6 +2705,15 @@ class AdminController extends Controller
         $subjects = Subject::get()->where('class_id', $id);
         $subjects->map->delete();
         return redirect()->back()->with('message','You have successfully delete class.');
+    }
+
+    public function sectionDelete($id)
+    {
+        $section = Section::find($id);
+        $section->delete();
+        $classe_section = ClasseSection::get()->where('section_id', $id);
+         $classe_section->map->delete();
+        return redirect()->back()->with('message','You have successfully delete section.');
     }
 
     /**

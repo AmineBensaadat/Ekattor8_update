@@ -31,7 +31,7 @@ use App\Models\Classes;
     <div class="col-7 offset-md-2">
         <div class="eSection-wrap">
             <div class="search-filter-area d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15">
-              <form action="{{ route('admin.class_list') }}">
+              <form action="{{ route('admin.section_list') }}">
                 <div
                   class="search-input d-flex justify-content-start align-items-center"
                 >
@@ -95,7 +95,7 @@ use App\Models\Classes;
                       <a class="dropdown-item" id="pdf" href="javascript:;" onclick="Export()">{{ get_phrase('PDF') }}</a>
                   </li>
                   <li>
-                      <a class="dropdown-item" id="print" href="javascript:;" onclick="printableDiv('class_list')">{{ get_phrase('Print') }}</a>
+                      <a class="dropdown-item" id="print" href="javascript:;" onclick="printableDiv('section_list')">{{ get_phrase('Print') }}</a>
                   </li>
                 </ul>
               </div>
@@ -112,11 +112,11 @@ use App\Models\Classes;
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($section_lists as $key => $class_list)
+                        @foreach($section_lists as $key => $section_list)
                          
                              <tr>
                                 <td>{{ $section_lists->firstItem() + $key }}</td>
-                                <td>{{ $class_list->name }}</td>
+                                <td>{{ $section_list->name }}</td>
                             
                                 <td class="text-start">
                                     <div class="adminTable-action">
@@ -132,13 +132,10 @@ use App\Models\Classes;
                                           class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                                         >
                                           <li>
-                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.section', ['id' => $class_list->id]) }}', '{{ get_phrase('Edit Section') }}')">{{ get_phrase('Edit Section') }}</a>
+                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.section', ['id' => $section_list->id]) }}', '{{ get_phrase('Edit Section') }}')">{{ get_phrase('Edit Section') }}</a>
                                           </li>
                                           <li>
-                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.class', ['id' => $class_list->id]) }}', '{{ get_phrase('Edit Class') }}')">{{ get_phrase('Edit Class') }}</a>
-                                          </li>
-                                          <li>
-                                            <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('admin.class.delete', ['id' => $class_list->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>
+                                            <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('admin.section.delete', ['id' => $section_list->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>
                                           </li>
                                         </ul>
                                     </div>
@@ -162,7 +159,7 @@ use App\Models\Classes;
 
 
 @if(count($section_lists) > 0)
-<div class="table-responsive class_list display-none-view" id="class_list">
+<div class="table-responsive section_list display-none-view" id="section_list">
   <h4 class="" style="font-size: 16px; font-weight: 600; line-height: 26px; color: #181c32; margin-left:45%; margin-bottom:15px; margin-top:17px;">{{ get_phrase('Class List') }}</h4> 
       <table class="table eTable">
         <thead>
@@ -173,13 +170,13 @@ use App\Models\Classes;
             </tr>
         </thead>
         <tbody>
-            @foreach($section_lists as $key => $class_list)
+            @foreach($section_lists as $key => $section_list)
                  <tr>
                     <td>{{ $section_lists->firstItem() + $key }}</td>
-                    <td>{{ $class_list->name }}</td>
+                    <td>{{ $section_list->name }}</td>
                     <td>
                         <ul>
-                            <?php $sections = Section::get()->where('class_id', $class_list['id']); ?>
+                            <?php $sections = Section::get()->where('id', $section_list['id']); ?>
                             @foreach($sections as $section)
                                 <li>{{ $section->name }}</li>
                             @endforeach
@@ -201,7 +198,7 @@ use App\Models\Classes;
   function Export() {
 
       // Choose the element that our invoice is rendered in.
-      const element = document.getElementById("class_list");
+      const element = document.getElementById("section_list");
 
       // clone the element
       var clonedElement = element.cloneNode(true);
@@ -212,7 +209,7 @@ use App\Models\Classes;
       // Choose the clonedElement and save the PDF for our user.
     var opt = {
       margin:       1,
-      filename:     'class_list_{{ date("y-m-d") }}.pdf',
+      filename:     'section_list_{{ date("y-m-d") }}.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2 }
     };
