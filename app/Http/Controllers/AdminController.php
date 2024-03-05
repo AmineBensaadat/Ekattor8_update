@@ -2523,6 +2523,7 @@ class AdminController extends Controller
         
         $search = $request['search'] ?? "";
         $sections =  Section::get()->where('id',auth()->user()->school_id);
+        
         if($search != "") {
 
             $class_lists = Classes::where(function ($query) use($search) {
@@ -2712,7 +2713,7 @@ class AdminController extends Controller
         $section = Section::find($id);
         $section->delete();
         $classe_section = ClasseSection::get()->where('section_id', $id);
-         $classe_section->map->delete();
+        $classe_section->map->delete();
         return redirect()->back()->with('message','You have successfully delete section.');
     }
 

@@ -1,4 +1,6 @@
-<?php use App\Models\Section; ?>
+<?php use App\Models\Section;
+use App\Models\ClasseSection;
+?>
 
 @extends('admin.navigation')
    
@@ -105,6 +107,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{{ get_phrase('Name') }}</th>
+                            <th scope="col">{{ get_phrase('Section') }}</th>
                             <th scope="col" class="text-end">{{ get_phrase('Action') }}</th>
                         </tr>
                     </thead>
@@ -113,6 +116,18 @@
                              <tr>
                                 <td>{{ $class_lists->firstItem() + $key }}</td>
                                 <td>{{ $class_list->name }}</td>
+                                <td>
+                                  <ul>
+                                      <?php 
+                                             $classe_sections = ClasseSection::select('name', 'sections.id')
+                                                          ->join('sections', 'sections.id', '=', 'classe_sections.section_id')
+                                                          ->where('classe_sections.class_id', $class_list['id'])
+                                                          ->get(); ?>
+                                      @foreach($classe_sections as $section)
+                                          <li>{{ $section->name }}</li>
+                                      @endforeach
+                                  </ul>
+                              </td>
                                 <td class="text-start">
                                     <div class="adminTable-action">
                                         <button
@@ -126,9 +141,6 @@
                                         <ul
                                           class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                                         >
-                                          <li>
-                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.section', ['id' => $class_list->id]) }}', '{{ get_phrase('Edit Section') }}')">{{ get_phrase('Edit Section') }}</a>
-                                          </li>
                                           <li>
                                             <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.class', ['id' => $class_list->id]) }}', '{{ get_phrase('Edit Class') }}')">{{ get_phrase('Edit Class') }}</a>
                                           </li>
