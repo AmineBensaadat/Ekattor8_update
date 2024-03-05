@@ -39,7 +39,7 @@
             var table = $("#classTable tbody");
             var newRow = $("<tr>");
             newRow.append("<td>New Data 1</td>");
-            newRow.append("<td>New Data 2</td>");
+            newRow.append("<td>New Data 2 <button class='btn btn-secondary btn-sm'>Action</button></td>");
             table.append(newRow);
         });
     });
