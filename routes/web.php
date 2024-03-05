@@ -375,6 +375,7 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
 
     // sections routes
     Route::get('admin/section/delete/{id}', 'sectionDelete')->name('admin.section.delete');
+    Route::get('admin/section/add_classe/{id}', 'addClasseToSection')->name('admin.section.classe_add');
 
     //Accounting route
     Route::get('admin/student_fee/delete/{id}/{status}', 'update_offline_payment')->name('admin.update_offline_payment');

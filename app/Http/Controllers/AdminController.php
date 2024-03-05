@@ -2585,12 +2585,7 @@ class AdminController extends Controller
                 'school_id' => auth()->user()->school_id,
             ])->id;
 
-            ClasseSection::create([
-              'section_id' =>   $id,
-              'school_id' => auth()->user()->school_id,
-              'class_id'=> $data['classe_id']
-          ]);
-
+         
 
             return redirect()->back()->with('message','You have successfully create a new class.');
 
@@ -2649,7 +2644,14 @@ class AdminController extends Controller
     public function editSection($id)
     {
         $section = Section::find(['id' => $id]);
-        return view('admin.section.update_section', ['section' => $section[0]]);
+        return view('admin.section.add_section', ['section' => $section[0]]);
+    }
+
+    public function addClasseToSection($id)
+    {
+        $section = Section::find(['id' => $id]);
+        //$classe_section = ClasseSection::get()->where('section_id', $id);
+        return view('admin.section.add_classe_to_section', ['section' => $section[0]]);
     }
 
 

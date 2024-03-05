@@ -137,6 +137,9 @@ use App\Models\Classes;
                                           <li>
                                             <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('admin.section.delete', ['id' => $section_list->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>
                                           </li>
+                                          <li>
+                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.section.classe_add', ['id' => $section_list->id]) }}', '{{ get_phrase('Add classe') }}')">{{ get_phrase('add classe') }}</a>
+                                          </li>
                                         </ul>
                                     </div>
                                 </td>
