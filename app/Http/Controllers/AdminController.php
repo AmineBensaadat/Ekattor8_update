@@ -2644,13 +2644,21 @@ class AdminController extends Controller
     public function editSection($id)
     {
         $section = Section::find(['id' => $id]);
-        return view('admin.section.add_section', ['section' => $section[0]]);
+
+
+
+        $classe_section = ClasseSection::get()->where('class_id', $id)->where('school_id', auth()->user()->school_id);
+      
+        $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+
+        return view('admin.section.edit', ['section' => $section[0], 'classe_section' => $classe_section, 'classes' => $classes ]);
     }
 
     public function addClasseToSection($id)
     {
         $section = Section::find(['id' => $id]);
         //$classe_section = ClasseSection::get()->where('section_id', $id);
+        
         return view('admin.section.add_classe_to_section', ['section' => $section[0]]);
     }
 
@@ -2670,31 +2678,12 @@ class AdminController extends Controller
     public function sectionUpdate(Request $request, $id)
     {
         $data = $request->all();
-
-        $section_id = $data['section_id'];
+        dd($data);
         $section_name = $data['name'];
-
-        foreach($section_id as $key => $value){
-            if($value == 0){
-                Section::create([
-                    'name' => $section_name[$key],
-                    'class_id' => $id,
-                ]);
-            }
-            if($value != 0 && is_numeric($value)){
-                Section::where(['id' => $value, 'class_id' => $id])->update([
-                    'name' => $section_name[$key],
-                ]);
-            }
-
-            $section_value = null;
-            if (strpos($value, 'delete') == true) {
-                $section_value = str_replace('delete', '', $value);
-
-                $section = Section::find(['id' => $section_value, 'class_id' => $id]);
-                $section->map->delete();
-            }
-        }
+        
+        Section::where(['id' => $id])->update([
+          'name' => $section_name,
+      ]);
 
         return redirect()->back()->with('message','You have successfully update sections.');
     }

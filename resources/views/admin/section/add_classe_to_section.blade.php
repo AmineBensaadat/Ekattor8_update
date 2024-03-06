@@ -16,8 +16,8 @@
             <table id="classTable" class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Column 1</th>
-                        <th scope="col">Column 2</th>
+                        <th scope="col">Classe</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,7 @@
             var table = $("#classTable tbody");
             var newRow = $("<tr>");
             newRow.append("<td>New Data 1</td>");
-            newRow.append("<td><button class='btn btn-secondary btn-sm'>Action</button></td>");
+            newRow.append("<td><button class='btn btn-secondary btn-sm'>Add</button></td>");
             table.append(newRow);
         });
     });

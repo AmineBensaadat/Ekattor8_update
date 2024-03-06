@@ -110,6 +110,11 @@ use App\Models\Classes;
                                                             onclick="rightModal('{{ route('admin.section.classe_add', ['id' => $section_list->id]) }}', '{{ get_phrase('Add classe') }}')">{{ get_phrase('add classe') }}</a>
                                                     </li>
                                                 </ul>
+                                                <a href="{{ route('admin.edit.section', ['id' => $section_list->id]) }}">{{ get_phrase('Edit') }}</a>
+                                                <button type="button"
+                                                    class="eBtn eBtn-black" >
+                                                    {{ get_phrase('Edit') }}
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -128,41 +133,6 @@ use App\Models\Classes;
             </div>
         </div>
     </div>
-
-
-    @if (count($section_lists) > 0)
-        <div class="table-responsive section_list display-none-view" id="section_list">
-            <h4 class=""
-                style="font-size: 16px; font-weight: 600; line-height: 26px; color: #181c32; margin-left:45%; margin-bottom:15px; margin-top:17px;">
-                {{ get_phrase('Class List') }}</h4>
-            <table class="table eTable" id="classTable">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">{{ get_phrase('Name') }}</th>
-                        <th scope="col">{{ get_phrase('Section') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($section_lists as $key => $section_list)
-                        <tr>
-                            <td>{{ $section_lists->firstItem() + $key }}</td>
-                            <td>{{ $section_list->name }}</td>
-                            <td>
-                                <ul>
-                                    <?php $sections = Section::get()->where('id', $section_list['id']); ?>
-                                    @foreach ($sections as $section)
-                                        <li>{{ $section->name }}</li>
-                                    @endforeach
-                                </ul>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {!! $section_lists->appends(request()->all())->links() !!}
-        </div>
-    @endif
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

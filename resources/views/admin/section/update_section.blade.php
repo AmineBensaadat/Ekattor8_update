@@ -1,5 +1,5 @@
 <div class="eoff-form">
-    <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('admin.create.section') }}">
+    <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('admin.update.section', ['id' => $section->id]) }}">
         @csrf 
         <div class="form-row">
             <div class="fpb-7">
