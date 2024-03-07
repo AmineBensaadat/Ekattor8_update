@@ -55,7 +55,7 @@ $active_session = get_school_settings(auth()->user()->school_id)->value('running
                         </select>
                     </div>
 
-                    <div class="col-md-3">
+                    {{-- <div class="col-md-3">
                         <label for="section_id" class="eForm-label">{{ get_phrase('Section') }}</label>
                         <select name="section_id" id="section_id" class="form-select eForm-select eChoice-multiple-with-remove" required >
                            <?php $sections = Section::where(['class_id' => $class_id])->get(); ?>
@@ -63,7 +63,7 @@ $active_session = get_school_settings(auth()->user()->school_id)->value('running
                                 <option value="{{ $section->id }}" {{ $section_id == $section->id ?  'selected':'' }}>{{ $section->name }}</option>
                             <?php endforeach; ?>
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-3 pt-2">
                         <button class="eBtn eBtn btn-secondary mt-4" type="submit" id = "filter_routine">{{ get_phrase('Filter') }}</button>
