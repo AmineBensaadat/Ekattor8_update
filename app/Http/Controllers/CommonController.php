@@ -10,6 +10,7 @@ use App\Models\Session;
 use App\Models\Classes;
 use App\Models\Section;
 use App\Models\Enrollment;
+use App\Models\ClasseSection;
 use Illuminate\Support\Str;
 use App\Models\Gradebook;
 use App\Models\Subject;
@@ -155,7 +156,10 @@ class CommonController extends Controller
 
     public function classWiseSections($id)
     {
-        $sections = Section::get()->where('class_id', $id);
+        $sections = ClasseSection::select('name', 'sections.id')
+        ->join('sections', 'sections.id', '=', 'classe_sections.section_id')
+        ->where('classe_sections.class_id', $id)
+        ->get();
         $options = '<option value="">' . 'Select a section' . '</option>';
         foreach ($sections as $section) :
             $options .= '<option value="' . $section->id . '">' . $section->name . '</option>';

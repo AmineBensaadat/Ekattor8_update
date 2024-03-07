@@ -930,6 +930,7 @@ class AdminController extends Controller
         $user_details = (new CommonController)->getAdminDetails($id);
         return view('admin.parent.parent_profile', ['user_details' => $user_details]);
     }
+    
     /**
      * Show the student list.
      *
@@ -958,7 +959,6 @@ class AdminController extends Controller
         }
 
         $students = $users->join('enrollments', 'users.id', '=', 'enrollments.user_id')->select('enrollments.*')->paginate(10);
-        
         $classes = Classes::get()->where('school_id', auth()->user()->school_id);
 
         return view('admin.student.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
@@ -2285,7 +2285,6 @@ class AdminController extends Controller
         ->where('classe_sections.class_id', $id)
         ->get();
         $options = '<option value="">'.'Select a section'.'</option>';
-        
         foreach ($sections as $section):
             $options .= '<option value="'.$section->id.'">'.$section->name.'</option>';
         endforeach;
