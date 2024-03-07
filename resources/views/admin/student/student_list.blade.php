@@ -418,7 +418,11 @@ use App\Models\Section;
 	 <!-- create datatables -->
 	  <script type="text/javascript">
 	  	$(document).ready(function(){
-	   		$('#student_dt').DataTable();
+	   		$('#student_dt').DataTable({
+          "paging": false,
+          "lengthChange": false,
+          "info": false
+        });
 		});
 
     $('#search').keyup(function() {
