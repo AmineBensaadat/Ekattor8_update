@@ -9,7 +9,7 @@ use App\Models\ClasseSection;
 @section('content')
     <div class="eoff-form">
         <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm"
-            action="{{ route('admin.update.section', ['id' => $section->name]) }}">
+            action="{{ route('admin.update.section', ['id' => $section->id]) }}">
             @csrf
             <div class="form-row col-md-4">
                 <div class="fpb-7">
@@ -24,8 +24,7 @@ use App\Models\ClasseSection;
                     @foreach ($classes as $classe)
                         <div class="custom-control custom-checkbox my-1 mr-sm-2">
                             <input type="checkbox" class="custom-control-input"
-                                @php 
-                                if( count(ClasseSection::get()->where('class_id', $classe->id)->where('section_id', $section->id)->where('school_id', auth()->user()->school_id)) >  0){
+                                @php if( count(ClasseSection::get()->where('class_id', $classe->id)->where('section_id', $section->id)->where('school_id', auth()->user()->school_id)) >  0){
                                   echo ('checked');
                                 } @endphp
                                 name="classes[]" value="{{ $classe->id }}">
@@ -34,8 +33,6 @@ use App\Models\ClasseSection;
                         <br>
                     @endforeach
                     <br>
-
-
                 </div>
 
                 <div class="fpb-7 pt-2">

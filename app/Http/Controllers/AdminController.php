@@ -2650,6 +2650,17 @@ class AdminController extends Controller
         $classe_section = ClasseSection::get()->where('class_id', $id)->where('school_id', auth()->user()->school_id);
       
         $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+        
+    
+      //   $parent = User::create([
+      //     'name' => $data['name'],
+      //     'email' => $data['email'],
+      //     'password' => Hash::make($data['password']),
+      //     'role_id' => '6',
+      //     'school_id' => auth()->user()->school_id,
+      //     'user_information' => $data['user_information'],
+      //     'status' => 1,
+      // ]);
 
         return view('admin.section.edit', ['section' => $section[0], 'classe_section' => $classe_section, 'classes' => $classes ]);
     }
@@ -2658,7 +2669,7 @@ class AdminController extends Controller
     {
         $section = Section::find(['id' => $id]);
         //$classe_section = ClasseSection::get()->where('section_id', $id);
-        
+;
         return view('admin.section.add_classe_to_section', ['section' => $section[0]]);
     }
 
@@ -2678,14 +2689,23 @@ class AdminController extends Controller
     public function sectionUpdate(Request $request, $id)
     {
         $data = $request->all();
-        dd($data);
-        $section_name = $data['name'];
-        
-        Section::where(['id' => $id])->update([
-          'name' => $section_name,
-      ]);
+        ClasseSection::where('section_id', $id)->where('school_id', auth()->user()->school_id)->delete();
+        if(array_key_exists('classes', $data)){
+          foreach($data['classes'] as $class){
+            ClasseSection::create([
+              'section_id' => $id,
+              'class_id' => $class,
+              'school_id' => auth()->user()->school_id,
+            ]);
+          }
 
-        return redirect()->back()->with('message','You have successfully update sections.');
+          Section::where('id', $id)->update([
+            'name' => $data['name'],
+          ]);
+        }
+       
+
+        return redirect()->back()->with('message','You have successfully update section.');
     }
 
     public function classDelete($id)

@@ -90,31 +90,7 @@ use App\Models\Classes;
 
                                         <td class="text-start">
                                             <div class="adminTable-action">
-                                                <button type="button"
-                                                    class="eBtn eBtn-black dropdown-toggle table-action-btn-2"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    {{ get_phrase('Actions') }}
-                                                </button>
-                                                <ul
-                                                    class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
-                                                    <li>
-                                                        <a class="dropdown-item" href="javascript:;"
-                                                            onclick="rightModal('{{ route('admin.edit.section', ['id' => $section_list->id]) }}', '{{ get_phrase('Edit Section') }}')">{{ get_phrase('Edit Section') }}</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="javascript:;"
-                                                            onclick="confirmModal('{{ route('admin.section.delete', ['id' => $section_list->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="javascript:;"
-                                                            onclick="rightModal('{{ route('admin.section.classe_add', ['id' => $section_list->id]) }}', '{{ get_phrase('Add classe') }}')">{{ get_phrase('add classe') }}</a>
-                                                    </li>
-                                                </ul>
-                                                <a href="{{ route('admin.edit.section', ['id' => $section_list->id]) }}">{{ get_phrase('Edit') }}</a>
-                                                <button type="button"
-                                                    class="eBtn eBtn-black" >
-                                                    {{ get_phrase('Edit') }}
-                                                </button>
+                                              <a href="{{ route('admin.edit.section', ['id' => $section_list->id]) }}">{{ get_phrase('Edit') }}</a>
                                             </div>
                                         </td>
                                     </tr>
