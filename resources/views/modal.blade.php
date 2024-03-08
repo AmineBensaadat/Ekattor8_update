@@ -85,8 +85,9 @@
     var confirmModal = new bootstrap.Modal(document.getElementById('confirmSweetAlerts'), {
       keyboard: false
     });
+    console.log(1);
     confirmModal.show();
-
+    console.log(2);
     if(callBackFunction == 'undefined')
     {
       $('#confirmBtn').attr('href', deleteUrl);
@@ -95,7 +96,7 @@
     {
         $('#confirmBtn').attr('onclick',deleteUrl);
     }
-    else{
+    else{;
       $('#confirmBtn').attr('onclick', "deleteDataUsingAjax('"+deleteUrl+"', "+callBackFunction+");");
     }
   }

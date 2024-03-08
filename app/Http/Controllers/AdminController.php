@@ -1834,7 +1834,6 @@ class AdminController extends Controller
     public function routineList(Request $request)
     {
         $data = $request->all();
-
         $class_id = $data['class_id'];
         $section_id = $data['section_id'];
         $classes = Classes::where('school_id', auth()->user()->school_id)->get();
@@ -1853,7 +1852,6 @@ class AdminController extends Controller
     public function routineAdd(Request $request)
     {
         $data = $request->all();
-
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
 
         Routine::create([

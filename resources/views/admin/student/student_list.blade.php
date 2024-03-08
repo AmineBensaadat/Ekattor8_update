@@ -201,7 +201,7 @@ use App\Models\Section;
             </div>
             @if(count($students) > 0)
             <div class="table-responsive">
-              <table id="student_dt" class="table eTable eTable-2 table table-striped" style="width:100%">
+              <table id="student_dt" class="table eTable eTable-2 table " style="width:100%">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -409,9 +409,6 @@ use App\Models\Section;
 	 <!-- datatables bootstrap script -->
 	 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" defer></script>
 
-	 <!-- bootstrap style -->
-	 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	 
 	 <!-- datatables style css -->
 	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
 

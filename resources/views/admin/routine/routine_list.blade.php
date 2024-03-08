@@ -56,7 +56,7 @@ $active_session = get_school_settings(auth()->user()->school_id)->value('running
 
             <div class="col-md-3">
                 <select name="section_id" id="section_id" class="form-select eForm-select eChoice-multiple-with-remove" required >
-                    <?php $sections = Section::where(['class_id' => $class_id])->get(); ?>
+                    <?php $sections = Section::get(); ?>
                     <?php foreach($sections as $section): ?>
                         <option value="{{ $section->id }}" {{ $section_id == $section->id ?  'selected':'' }}>{{ $section->name }}</option>
                     <?php endforeach; ?>
