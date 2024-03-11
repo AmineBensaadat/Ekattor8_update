@@ -958,7 +958,7 @@ class AdminController extends Controller
             $users->where('class_id', $class_id);
         }
 
-        $students = $users->join('enrollments', 'users.id', '=', 'enrollments.user_id')->select('enrollments.*')->paginate(10);
+        $students = $users->join('enrollments', 'users.id', '=', 'enrollments.user_id')->select('enrollments.*')->orderByDesc('created_at')->paginate(10);
         $classes = Classes::get()->where('school_id', auth()->user()->school_id);
 
         return view('admin.student.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
@@ -1032,13 +1032,24 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $student_details = (new CommonController)->get_student_details_by_id($id);
+ 
         $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-        return view('admin.student.edit_student', ['user' => $user, 'student_details' => $student_details, 'classes' => $classes]);
+        $sections = ClasseSection::select('name', 'sections.id')
+        ->join('sections', 'sections.id', '=', 'classe_sections.section_id')
+        ->where('classe_sections.school_id', auth()->user()->school_id)
+        ->get();
+        return view('admin.student.edit_student', [
+          'user' => $user, 
+          'student_details' => $student_details, 
+          'classes' => $classes,
+          'sections' => $sections
+        ]);
     }
 
     public function studentUpdate(Request $request, $id)
     {
         $data = $request->all();
+
          if(!empty($data['photo'])){
 
             $imageName = time().'.'.$data['photo']->extension();
@@ -1073,7 +1084,7 @@ class AdminController extends Controller
 
         Enrollment::where('user_id', $id)->update([
             'class_id' => $data['class_id'],
-            'section_id' => $data['section_id'],
+            'section_id' => $data['section_list'],
         ]);
 
         return redirect()->back()->with('message','You have successfully update student.');
@@ -1257,7 +1268,8 @@ class AdminController extends Controller
             if(!empty(get_settings('smtp_user')) && (get_settings('smtp_pass')) && (get_settings('smtp_host')) && (get_settings('smtp_port'))){
                 Mail::to($data['email'])->send(new NewUserEmail($data));
             }
-            return redirect()->back()->with('message','Admission successfully done.');
+            return redirect()->route('admin.student')->with('message', 'Admission successfully done.');
+
 
         } else {
 

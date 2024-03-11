@@ -26,8 +26,11 @@
             <div class="fpb-7">
               <label for="section_list"  class="eForm-label">{{ get_phrase("Section") }}</label>
               <select name="section_list" id="section_list" class="form-select eForm-select eChoice-multiple-with-remove" required >
-                  <option value="">{{ get_phrase("First select a class") }}</option>
-              </select>
+                <option value="">{{ get_phrase('Select a section') }}</option>
+                @foreach($sections as $section)
+                    <option value="{{ $section->id }}" {{ $section['id'] == $student_details['section_id'] ?  'selected':'' }}>{{ $section->name }}</option>
+                @endforeach
+            </select>
           </div>
 
             <?php 
