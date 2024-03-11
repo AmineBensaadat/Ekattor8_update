@@ -2687,7 +2687,7 @@ class AdminController extends Controller
     {
       $date_from = strtotime('first day of january this year');
       $date_to = strtotime('last day of december this year');
-      $subscriptions = StudentPackages::where('id', '>=', 1)
+      $subscriptions = StudentPackages::where('id', '>=', 1)->where('school_id', auth()->user()->school_id)
       //$subscriptions = StudentPackages::where('date_added', '>=', $date_from)
           //->where('date_added', '<=', $date_to)
         ->paginate(10);

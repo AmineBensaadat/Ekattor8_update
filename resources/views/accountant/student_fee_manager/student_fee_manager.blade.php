@@ -17,8 +17,7 @@
 				</div>
 	          	<div class="row mb-3">
 	                <div class="expense_add">
-                      <a href="./student_fee_manager_create" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip"><i class="bi bi-plus"></i>{{ get_phrase('Add Single Invoice New') }}</a>
-	                    <a href="javascript:;" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('{{ route('accountant.fee_manager.open_modal', ['value' => 'single']) }}', '{{ get_phrase('Add  Single Invoice') }}')"><i class="bi bi-plus"></i>{{ get_phrase('Add Single Invoice') }}</a>
+                      <a href="./student_fee_manager_create" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip"><i class="bi bi-plus"></i>{{ get_phrase('Add Single Invoice') }}</a>
 	                    <a href="javascript:;" class="btn btn-outline-success float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('{{ route('accountant.fee_manager.open_modal', ['value' => 'mass']) }}', '{{ get_phrase('Add  Mass Invoice') }}')"><i class="bi bi-plus"></i>{{ get_phrase('Add Mass Invoice') }}</a>
 	                </div>
 	            </div>

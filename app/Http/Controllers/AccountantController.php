@@ -254,7 +254,7 @@ class AccountantController extends Controller
 
 
             StudentFeeManager::create($data);
-
+            // aa
             return redirect()->back()->with('message','You have successfully create a new invoice.');
         } else if($value == 'mass'){
 

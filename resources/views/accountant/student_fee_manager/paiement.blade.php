@@ -91,24 +91,6 @@
                       </select>
                     </div>
 
-                    <div class="fpb-7">
-                      <label for="month_paid" class="eForm-label">{{ get_phrase('month_paid') }}</label>
-                      <select name="month_paid" id="month_paid" class="form-select eForm-select eChoice-multiple-with-remove" required >
-                        <option value="">{{ get_phrase('Select a month') }}</option>
-                        <option value="april">{{ get_phrase('April') }}</option>
-                        <option value="february">{{ get_phrase('February') }}</option>
-                        <option value="june">{{ get_phrase('June') }}</option>
-                        <option value="may">{{ get_phrase('May') }}</option>
-                        <option value="august">{{ get_phrase('August') }}</option>
-                        <option value="december">{{ get_phrase('December') }}</option>
-                        <option value="january">{{ get_phrase('January') }}</option>
-                        <option value="july">{{ get_phrase('July') }}</option>
-                        <option value="march">{{ get_phrase('March') }}</option>
-                        <option value="november">{{ get_phrase('November') }}</option>
-                        <option value="october">{{ get_phrase('October') }}</option>
-                        <option value="september">{{ get_phrase('September') }}</option>
-                      </select>
-                    </div>
                     <input type="hidden" id="student_id" name="student_id" value="{{ $student_id }}">
                     <input type="hidden" id="class_id" name="class_id" value="1">
                     
