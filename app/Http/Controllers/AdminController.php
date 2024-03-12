@@ -2714,7 +2714,8 @@ class AdminController extends Controller
         }
        
 
-        return redirect()->back()->with('message','You have successfully update section.');
+        return redirect()->route('admin.section_list')->with('message', 'Admission successfully done.');
+
     }
 
     public function classDelete($id)

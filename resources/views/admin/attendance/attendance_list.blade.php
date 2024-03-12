@@ -10,6 +10,7 @@ use App\Models\Classes;
 use App\Models\Section;
 use App\Models\DailyAttendances;
 use App\Models\Session;
+use App\Models\ClasseSection;
 
 $class_name = Classes::find($page_data['class_id'])->name;
 $section_name = Section::find($page_data['section_id'])->name;
@@ -97,7 +98,14 @@ $student_id_count = 0;
             <div class="att-filter-option">
               <select name="section_id" id="section_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
                 <option value="">{{ get_phrase('Select a section') }}</option>
-                  <?php $sections = Section::where(['class_id' => $page_data['class_id']])->get(); ?>
+                  <?php $sections = 
+                  ClasseSection::select('name', 'sections.id')
+        ->join('sections', 'sections.id', '=', 'classe_sections.section_id')
+        ->where('classe_sections.school_id', auth()->user()->school_id)
+        ->where('classe_sections.class_id', $page_data['class_id'])
+        ->get();
+                  
+                  ?>
                   <?php foreach($sections as $section): ?>
                       <option value="{{ $section['id'] }}" {{ $page_data['section_id'] == $section['id'] ?  'selected':'' }}>{{ $section['name'] }}</option>
                   <?php endforeach; ?>
