@@ -53,14 +53,14 @@
                 <label for="blood_group" class="eForm-label">{{ get_phrase('Blood group') }}</label>
                 <select name="blood_group" id="blood_group" class="form-select eForm-control">
                     <option value="">{{ get_phrase('Select a blood group') }}</option>
-                    <option value="a+" {{ $info->blood_group == 'a+' ?  'selected':'' }} >{{ get_phrase('A+') }}</option>
-                    <option value="a-" {{ $info->blood_group == 'a-' ?  'selected':'' }} >{{ get_phrase('A-') }}</option>
-                    <option value="b+" {{ $info->blood_group == 'b+' ?  'selected':'' }} >{{ get_phrase('B+') }}</option>
-                    <option value="b-" {{ $info->blood_group == 'b-' ?  'selected':'' }} >{{ get_phrase('B-') }}</option>
-                    <option value="ab+" {{ $info->blood_group == 'ab+' ?  'selected':'' }} >{{ get_phrase('AB+') }}</option>
-                    <option value="ab-" {{ $info->blood_group == 'ab-' ?  'selected':'' }} >{{ get_phrase('AB-') }}</option>
-                    <option value="o+" {{ $info->blood_group == 'o+' ?  'selected':'' }} >{{ get_phrase('O+') }}</option>
-                    <option value="o-" {{ $info->blood_group == 'o-' ?  'selected':'' }} >{{ get_phrase('O-') }}</option>
+                    <option value="a+" {{ isset($info->blood_group) &&  $info->blood_group == 'a+' ?  'selected':'' }} >{{ get_phrase('A+') }}</option>
+                    <option value="a-" {{ isset($info->blood_group ) &&  $info->blood_group == 'a-' ?  'selected':'' }} >{{ get_phrase('A-') }}</option>
+                    <option value="b+" {{ isset($info->blood_group ) &&  $info->blood_group == 'b+' ?  'selected':'' }} >{{ get_phrase('B+') }}</option>
+                    <option value="b-" {{ isset($info->blood_group ) &&  $info->blood_group == 'b-' ?  'selected':'' }} >{{ get_phrase('B-') }}</option>
+                    <option value="ab+" {{ isset($info->blood_group ) &&  $info->blood_group == 'ab+' ?  'selected':'' }} >{{ get_phrase('AB+') }}</option>
+                    <option value="ab-" {{ isset($info->blood_group ) &&  $info->blood_group == 'ab-' ?  'selected':'' }} >{{ get_phrase('AB-') }}</option>
+                    <option value="o+" {{ isset($info->blood_group ) &&  $info->blood_group == 'o+' ?  'selected':'' }} >{{ get_phrase('O+') }}</option>
+                    <option value="o-" {{ isset($info->blood_group ) &&  $info->blood_group == 'o-' ?  'selected':'' }} >{{ get_phrase('O-') }}</option>
                 </select>
             </div>
 

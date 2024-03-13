@@ -502,7 +502,6 @@ class TeacherController extends Controller
             $class_details = Classes::where('id', $distinct_class['class_id'])->first()->toArray();
             $classes[$key] = $class_details;
         }
-
         $attendance_of_students = array();
         $no_of_users = 0;
 
