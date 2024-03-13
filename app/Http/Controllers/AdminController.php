@@ -1037,6 +1037,7 @@ class AdminController extends Controller
         $sections = ClasseSection::select('name', 'sections.id')
         ->join('sections', 'sections.id', '=', 'classe_sections.section_id')
         ->where('classe_sections.school_id', auth()->user()->school_id)
+        ->where('classe_sections.class_id', $student_details['class_id'])
         ->get();
         return view('admin.student.edit_student', [
           'user' => $user, 
