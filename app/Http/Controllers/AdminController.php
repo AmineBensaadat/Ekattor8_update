@@ -2576,9 +2576,9 @@ class AdminController extends Controller
 
     public function createSection()
     {
-        $school_id  = auth()->user()->school_id;
-     
-        $classes = Classes::get()->where('school_id', $school_id);
+            $school_id  = auth()->user()->school_id;
+        
+            $classes = Classes::get()->where('school_id', $school_id);
 
         return view('admin.section.add_section', compact('classes'));
     }

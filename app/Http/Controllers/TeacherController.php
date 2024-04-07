@@ -495,7 +495,9 @@ class TeacherController extends Controller
     public function dailyAttendance()
     {
         $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)->select('class_id')->distinct()->get()->toArray();
-        $classes=array();
+        $school_id  = auth()->user()->school_id;
+     
+        $classes = Classes::get()->where('school_id', $school_id);
 
         foreach ($permissions  as  $key => $distinct_class) {
 
@@ -526,10 +528,11 @@ class TeacherController extends Controller
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
 
         $attendance_of_students = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->get()->toArray();
-
+        
         $no_of_users = DailyAttendances::where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->distinct()->count('student_id');
-
+        
         $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)->select('class_id')->distinct()->get()->toArray();
+       
         $classes=array();
 
         foreach ($permissions  as  $key => $distinct_class) {
@@ -537,7 +540,6 @@ class TeacherController extends Controller
             $class_details = Classes::where('id', $distinct_class['class_id'])->first()->toArray();
             $classes[$key] = $class_details;
         }
-
         return view('teacher.attendance.attendance_list', ['page_data' => $page_data, 'classes' => $classes, 'attendance_of_students' => $attendance_of_students, 'no_of_users' => $no_of_users]);
     }
 
