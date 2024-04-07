@@ -89,9 +89,10 @@ use App\Models\Classes;
                                         <td>{{ $section_list->name }}</td>
 
                                         <td class="text-start">
-                                            <div class="adminTable-action">
-                                              <a href="{{ route('admin.edit.section', ['id' => $section_list->id]) }}">{{ get_phrase('Edit') }}</a>
-                                            </div>
+                                      
+                                                <a href="{{ route('admin.edit.section', ['id' => $section_list->id]) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i>{{ get_phrase('Edit') }}</a>
+                                          
+                                           
                                         </td>
                                     </tr>
                                 @endforeach
