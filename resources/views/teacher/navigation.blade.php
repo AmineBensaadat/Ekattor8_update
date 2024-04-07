@@ -370,7 +370,7 @@
 				</div>
 			</li>
 
-      <li class="nav-links-li {{ request()->is('teacher/student*') ? 'showMenu':'' }}">
+      {{-- <li class="nav-links-li {{ request()->is('teacher/student*') ? 'showMenu':'' }}">
 				<div class="iocn-link">
 					<a href="{{ route('teacher.student') }}">
 						<div class="sidebar_icon">
@@ -384,7 +384,7 @@
 						<span class="link_name">{{ get_phrase('Student') }}</span>
 					</a>
 				</div>
-			</li>
+			</li> --}}
 
 		</ul>
 	</div>

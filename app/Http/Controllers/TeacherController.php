@@ -633,7 +633,7 @@ class TeacherController extends Controller
         
         $classes = Classes::get()->where('school_id', auth()->user()->school_id);
 
-        return view('admin.student.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
+        return view('teacher.student.student_list', compact('students', 'search', 'classes', 'class_id', 'section_id'));
     }
 
     public function dailyAttendanceFilter_csv(Request $request)
