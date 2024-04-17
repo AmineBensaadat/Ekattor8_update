@@ -97,7 +97,10 @@ $active_session = get_school_settings(auth()->user()->school_id)->value('running
             <div class="classTime-item">
               <?php $subject = Subject::find($perday_routine['subject_id']); ?>
               <div class="d-flex">
-                <h4 class="subjectName">{{ $subject->name }}</h4>
+                  @if(isset($subject))
+                      <h4 class="subjectName">{{ $subject->name }}</h4>
+                  @endif
+             
                 <div class="btn-group ms-auto">
                   <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-three-dots-vertical"></i>
